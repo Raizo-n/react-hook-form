@@ -1,12 +1,32 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
+import { useForm } from "react-hook-form";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+
+  }
 
   return (
-    <>Hello</>
-  )
+    <div className="form-container">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>Login</h1>
+        <label htmlFor="name">Name</label>
+        <input id="name" type="text" />
+        <label htmlFor="email">Email</label>
+        <input id="email" type="email" />
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
-export default App
+export default App;
